@@ -45,7 +45,7 @@ class DNSScanner extends EventEmitter {
                     this.emit('progress', {
                         current,
                         total,
-                        percent: ((current / total) * 100).toFixed(2),
+                        percent: (current / total * 100).toFixed(2),
                     });
 
                     return this._resolve(domain, { servers: serverIps }).then(res => {
@@ -95,17 +95,6 @@ class DNSScanner extends EventEmitter {
             });
         });
     }
-
-    // _reverseResolve(ip) {
-    //     return new Promise((resolve, reject) => {
-    //         dns.reverse(ip, (err, hostnames) => {
-    //             if (hostnames && hostnames.length) {
-    //                 return resolve(hostnames);
-    //             }
-    //             return resolve(null);
-    //         });
-    //     });
-    // }
 }
 
 module.exports = DNSScanner;
