@@ -1,0 +1,62 @@
+{
+    "name": "dns-scanner",
+    "version": "1.0.0",
+    "description": "Brute DNS records to find subdomains.",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "test": "jest",
+        "test-cov": "jest --coverage --runInBand --forceExit",
+        "lint": "eslint benchmarks src bin"
+    },
+    "bin": {
+        "dns-scanner": "./bin/dns-scanner.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/avin/dns-scanner"
+    },
+    "engines": {
+        "node": ">= 7.6.0"
+    },
+    "keywords": [
+        "security",
+        "dns",
+        "scanner",
+        "evilprobe"
+    ],
+    "dependencies": {
+        "bluebird": "^3.5.1",
+        "commander": "^2.16.0",
+        "progress": "^2.0.0"
+    },
+    "devDependencies": {
+        "eslint": "^5.2.0",
+        "husky": "^0.14.3",
+        "jest": "^23.4.2",
+        "lint-staged": "^7.2.0",
+        "prettier": "^1.14.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,json,css,md}": [
+            "prettier --tab-width 4 --single-quote --print-width 120 --trailing-comma=all --write",
+            "git add"
+        ]
+    },
+    "jest": {
+        "testMatch": [
+            "**/test/**/*.js"
+        ],
+        "coverageReporters": [
+            "text-summary",
+            "lcov"
+        ],
+        "bail": true,
+        "testEnvironment": "node"
+    }
+}
