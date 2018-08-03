@@ -5,6 +5,7 @@ Fast brute DNS records to find subdomains.
 ## Features
 
 -   Fast (20-30 seconds to scan 10000 records)
+-   Included 10k records subdomain dictionary
 
 ## Installation
 
@@ -16,12 +17,20 @@ npm install -g dns-scanner
 
 ### Usage: Command line
 
-Usage: dns-scanner [options] <domains ...>
+Usage: `dns-scanner [options] <domains ...>`
 
-Example:
+![demo](./img/demo.gif)
+
+Example using built-in dictionary with some domains:
 
 ```sh
-root@debian:~# dns-scanner -f ./dic.txt rambler.ru
+root@debian:~# dns-scanner rambler.ru mail.ru ya.ru
+```
+
+Example using personal dictionary:
+
+```sh
+root@debian:~# dns-scanner -f ./dic.txt apple.com
 ```
 
 #### Options
