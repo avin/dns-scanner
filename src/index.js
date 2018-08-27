@@ -18,10 +18,24 @@ class DNSScanner extends EventEmitter {
     async start() {
         const { target, concurrency, prefixes } = this.options;
         try {
-            const servers = await this._resolve(target, {
-                type: 'NS',
-            });
+            // Determine NS servers
+            let servers;
+            let rootTarget = target;
+            do {
+                servers = await this._resolve(rootTarget, {
+                    type: 'NS',
+                });
+                if (servers === null) {
+                    const parts = rootTarget.split('.').splice(1);
+                    if (parts.length === 0) {
+                        this.emit('error', new Error('Cannot determine NS servers of domain'));
+                        return;
+                    }
+                    rootTarget = parts.join('.');
+                }
+            } while (servers === null);
 
+            // Get IPs of servers
             let serverIps = [];
             const nsServers = [];
             for (const server of servers) {
@@ -45,7 +59,7 @@ class DNSScanner extends EventEmitter {
                     this.emit('progress', {
                         current,
                         total,
-                        percent: (current / total * 100).toFixed(2),
+                        percent: ((current / total) * 100).toFixed(2),
                     });
 
                     return this._resolve(domain, { servers: serverIps }).then(res => {

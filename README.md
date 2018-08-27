@@ -6,6 +6,7 @@ Fast brute DNS records to find subdomains.
 
 -   Fast (20-30 seconds to scan 10000 records)
 -   Included 10k records subdomain dictionary
+-   Recursively scan
 
 ## Installation
 
@@ -36,7 +37,9 @@ root@debian:~# dns-scanner -f ./dic.txt apple.com
 #### Options
 
 ```
--f, --file [value]  dictionary file
+-f, --file [value]  Dictionary file
+-r, --recursive     Recursively scan sub-domains
+-v, --verbose       Show scanning details info
 -h, --help          output usage information
 ```
 

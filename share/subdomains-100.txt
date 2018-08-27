@@ -80,6 +80,7 @@ backup
 mx2
 lyncdiscover
 info
+ant
 apps
 download
 remote

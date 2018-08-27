@@ -1,6 +1,6 @@
 {
     "name": "dns-scanner",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Brute DNS records to find subdomains.",
     "main": "index.js",
     "license": "MIT",
@@ -27,8 +27,9 @@
     ],
     "dependencies": {
         "bluebird": "^3.5.1",
+        "chalk": "^2.4.1",
         "commander": "^2.16.0",
-        "progress": "^2.0.0"
+        "log-update": "^2.3.0"
     },
     "devDependencies": {
         "eslint": "^5.2.0",
